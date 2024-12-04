@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&ast;&ast;&#x4e00;&#x3001;Git&#x7edf;&#x8ba1;&#x4ee3;&#x7801;&#x91cf;&ast;&ast;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="一git统计代码量"><strong>一、Git统计代码量</strong></h3>
+<p><strong>1.根据用户名时间段统计</strong></p>
+<pre><code>git log --author=&quot;username&quot; --since=2018-01-01 --until=2019-12-31 --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }' -
+</code></pre>
+<p><strong>2.查看提交者排名前N位</strong></p>
+<pre><code>git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 5
+</code></pre>
+<p><strong>3.提交数统计</strong></p>
+<pre><code>git log --oneline | wc -l
+</code></pre>
+<p><strong>4.根据用户名统计</strong></p>
+<pre><code>git log --author=&quot;username&quot; --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }' -
+</code></pre>
+<p><strong>5.根据时间段统计</strong></p>
+<pre><code>git log --since=2020-01-01 --until=2021-02-04 --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }'
+</code></pre>
+<p><strong>6.统计每个人的增删行数</strong></p>
+<pre><code>git log --format='%aN' | sort -u | while read name; do echo -en &quot;$name\t&quot;; git log --author=&quot;$name&quot; --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s &quot;, add, subs, loc }' -; done
+</code></pre>
+<p><strong>7.贡献者统计</strong></p>
+<pre><code>git log --pretty='%aN' | sort -u | wc -l
+</code></pre>
+<p><strong>8.根据时间段排除文件夹统计</strong></p>
+<pre><code>git log --since=2021-01-28 --until=2021-02-03 --pretty=tformat: --numstat -- . &quot;:(exclude)src/test&quot; | awk '{ add += $1; subs += $2; loc += $1 + $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }'
+</code></pre>
+<p>-- . &quot;:(exclude)folderName&quot; folderName指src/test文件夹，这里是相对路径</p>
+<p>-- . &quot;:(exclude)folderName1&quot; &quot;:(exclude)folderName2&quot; 排除多个文件夹</p>
+<p>-- . &quot;:(exclude)folderName&quot;也 可以用在其他的统计中；--前只能有一个空格，有多个空格识别不了</p>
+<p><strong>9.根据指定文件夹统计</strong></p>
+<pre><code>git log --since=2021-06-24 --until=2021-06-30 --pretty=tformat: --numstat | grep src/test | gawk '{ add += $1; subs += $2; loc += $1 + $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }'
+</code></pre>
+<p>src/test 指定src的test目录下</p>
+<p>注意：增删也算统计的代码量就修改loc += $1 + $2</p>
+<p><strong>10.代码存量</strong>
+find . -name *.java -exec wc -l {} ; | awk '{s+=$1}END{print s}'</p>
+<h3 id="二git常用命令"><strong>二、Git常用命令</strong></h3>
+<p><strong>1. 克隆一个git项目到本地,将git项目拉取到本地</strong></p>
+<p>git clone 项目地址</p>
+<p><strong>2.查看文件状态,列出当前目录没有被git管理，以及被修改过还未提交的文件</strong></p>
+<p>git status</p>
+<p><strong>3.将我们提交的文件添加到索引库中（添加到缓冲区），*可以是路径也可以是.符号，git add . 代表将当前目录下的所有文件都添加到索引库中,</strong></p>
+<p><strong>如果指定路径则代表将制定路径的文件添加到索引库中。</strong></p>
+<p>git add *</p>
+<p><strong>4.将文件推送到本地仓库中,-m 后可以填写此次提交的备注如git commit -m &quot;提交删除功能代码&quot;，那么在git项目中的提交记录里面就能看见你的推送备注。</strong></p>
+<p><strong>这一步仅仅是放在缓冲区中，还未真正提交代码</strong></p>
+<p>git commit -m &quot;备注&quot;</p>
+<p><strong>5.这一步才是推送代码推送时需要跟分支名，表示需要将代码推送至某个分支.如git push origin dev表示你要讲代码推送至dev分支</strong></p>
+<p>git push origin 分支名</p>
+<p><strong>6.更新当前分支的代码,获取最新的代码</strong></p>
+<p>git pull</p>
+<p><strong>7.从当前分支切换至另一个分支</strong></p>
+<p>git checkout 分支名</p>
+<p><strong>8.当前分支合并其他分支</strong></p>
+<p>git merge 分支名</p>
+<p><strong>9.提交被忽略的文件</strong></p>
+<p>$ git add src/XXX</p>
+<p>如果抛出如下异常</p>
+<p>The following paths are ignored by one of your .gitignore files:src/XXX</p>
+<p>Use -f if you really want to add them.</p>
+<p>提示提交的时候，需要加 –f。使用如下命令即可解决：</p>
+<p>$ git add -f src/XXX</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

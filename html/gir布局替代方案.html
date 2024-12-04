@@ -1,0 +1,56 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="container c3">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <!-- $container-width: 1200px;$item-width: 250px;$max-columns: floor($container-width / $item-width);.container {  --n: #{$max-columns}; // 输出最大列数 4} -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 500px;
+        background: #eee;
+        margin: 50px auto;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .item {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #333;
+        box-sizing: border-box;
+      }
+      .item:nth-child(odd) {
+        background: #046f4e;
+      }
+      .item:nth-child(even) {
+        background: #d53b3b;
+      }
+      .c3 .item {
+        --n: 5; /* 每行显示的子项数量 */
+        --item-width: 50px; /* 子项宽度 */
+        --space: calc(
+          100% / var(--n) - var(--item-width)
+        ); /* 计算子项之间的间距 */
+        --m: calc(var(--space) / 2); /* 左右间距的一半 */
+        margin: 10px var(--m); /* 动态计算左右的间距 */
+      }
+    </style>
+  </body>
+</html>
