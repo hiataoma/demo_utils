@@ -4,8 +4,13 @@ export const handQueue = (
   reqs // 请求总数
 ) => {
   reqs = reqs || []
-
-
+  
+  /**
+   * 创建一个请求队列，控制并发数
+   *
+   * @param {number} [concurrency=6] - 最大并发数，默认为6
+   * @returns {function} - 一个函数，用于将请求添加到队列中
+   */
   const requestQueue = (concurrency) => {
     concurrency = concurrency || 6 // 最大并发数
     const queue = [] // 请求池
