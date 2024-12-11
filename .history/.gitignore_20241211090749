@@ -7,8 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-
-node/excel/node_modules
+/mode/node_modules
+dist
+dist-ssr
+*.local
 package-lock.json
 
 
